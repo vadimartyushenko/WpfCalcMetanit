@@ -10,7 +10,7 @@ namespace WpfCalcMetanit
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private string _leftOper = "";
+		private string _leftOper = "0";
 
 		private string _rightOper = "";
 
@@ -19,6 +19,8 @@ namespace WpfCalcMetanit
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			txtBlock.Text += _leftOper;
 
 			foreach (UIElement childElement in LayoutRoot.Children)
 			{
@@ -31,7 +33,8 @@ namespace WpfCalcMetanit
 		{
 			var s = (string)((Button) e.OriginalSource).Content;
 
-			txtBlock.Text += s;
+			//TODO: доработать для случая расчета, например, 1+3*5 
+			 txtBlock.Text = txtBlock.Text =="0"? s : txtBlock.Text + s;
 
 			int numberBut;
 			var isNumber = Int32.TryParse(s, out numberBut);
@@ -39,7 +42,7 @@ namespace WpfCalcMetanit
 			if (isNumber)
 			{
 				if (string.IsNullOrWhiteSpace(_operation))
-					_leftOper += s;
+					_leftOper =_leftOper == "0"? s: _leftOper+s;
 				else
 					_rightOper += s;
 			}
@@ -97,6 +100,11 @@ namespace WpfCalcMetanit
 					_rightOper = (num1 * num2).ToString();
 					break;
 			}
+		}
+
+		private void SwhButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
