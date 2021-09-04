@@ -4,15 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCalcMetanit"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:collections="clr-namespace:System.Collections;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="Калькулятор" Height="500" Width="600">
     <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition />
+            <RowDefinition Height="0.5*"/>
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -21,23 +24,32 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="txtBlock" Grid.Column="0" Grid.ColumnSpan="4" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
-        <Button Grid.Column="0" Grid.Row="1" FontSize="30" Background="DarkSlateGray">1</Button>
-        <Button Grid.Column="1" Grid.Row="1" FontSize="30" Background="DarkSlateGray">2</Button>
-        <Button Grid.Column="2" Grid.Row="1" FontSize="30" Background="DarkSlateGray">3</Button>
-        <Button Grid.Column="3" Grid.Row="1" FontSize="30" Background="DarkSlateGray">4</Button>
-        <Button Grid.Column="0" Grid.Row="2" FontSize="30" Background="DarkSlateGray">5</Button>
-        <Button Grid.Column="1" Grid.Row="2" FontSize="30" Background="DarkSlateGray">6</Button>
-        <Button Grid.Column="2" Grid.Row="2" FontSize="30" Background="DarkSlateGray">7</Button>
-        <Button Grid.Column="3" Grid.Row="2" FontSize="30" Background="DarkSlateGray">8</Button>
-        <Button Grid.Column="0" Grid.Row="3" FontSize="30" Background="DarkSlateGray">9</Button>
-        <Button Grid.Column="1" Grid.Row="3" FontSize="30" Background="DarkSlateGray">0</Button>
-        <Button Grid.Column="2" Grid.Row="3" FontSize="20">+</Button>
-        <Button Grid.Column="3" Grid.Row="3" FontSize="20">-</Button>
-        <Button Grid.Column="0" Grid.Row="4" FontSize="20">*</Button>
-        <Button Grid.Column="1" Grid.Row="4" FontSize="20">/</Button>
-        <Button Grid.Column="2" Grid.Row="4" FontSize="20">=</Button>
-        <Button Grid.Column="3" Grid.Row="4" FontSize="20">&lt;CLEAR&gt;</Button>
-        <Button x:Name="swhButton" Grid.Column="0" Grid.Row="5" Content="Switch" FontSize="20" Click="SwhButton_OnClick"></Button>
+        <TextBlock x:Name="txtBlock" Grid.Column="0" Grid.ColumnSpan="4" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+        <Button Grid.Column="0" Grid.Row="2" FontSize="30" Background="DarkSlateGray">1</Button>
+        <Button Grid.Column="1" Grid.Row="2" FontSize="30" Background="DarkSlateGray">2</Button>
+        <Button Grid.Column="2" Grid.Row="2" FontSize="30" Background="DarkSlateGray">3</Button>
+        <Button Grid.Column="3" Grid.Row="2" FontSize="30" Background="DarkSlateGray">4</Button>
+        <Button Grid.Column="0" Grid.Row="3" FontSize="30" Background="DarkSlateGray">5</Button>
+        <Button Grid.Column="1" Grid.Row="3" FontSize="30" Background="DarkSlateGray">6</Button>
+        <Button Grid.Column="2" Grid.Row="3" FontSize="30" Background="DarkSlateGray">7</Button>
+        <Button Grid.Column="3" Grid.Row="3" FontSize="30" Background="DarkSlateGray">8</Button>
+        <Button Grid.Column="0" Grid.Row="4" FontSize="30" Background="DarkSlateGray">9</Button>
+        <Button Grid.Column="1" Grid.Row="4" FontSize="30" Background="DarkSlateGray">0</Button>
+        <Button Grid.Column="2" Grid.Row="4" FontSize="20">+</Button>
+        <Button Grid.Column="3" Grid.Row="4" FontSize="20">-</Button>
+        <Button Grid.Column="0" Grid.Row="6" FontSize="20">*</Button>
+        <Button Grid.Column="1" Grid.Row="6" FontSize="20">/</Button>
+        <Button Grid.Column="2" Grid.Row="6" FontSize="20">=</Button>
+        <Button x:Name="clcButton"  Grid.Column="3" Grid.Row="6" FontSize="20">&lt;CLEAR&gt;</Button>
+        <Button x:Name="swhButton" Grid.Column="0" Grid.Row="1" Content="Switch" FontSize="20" Click="SwhButton_OnClick">
+            <Button.ToolTip>
+                <ToolTip>Изменение знака операнда</ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <GridSplitter Grid.Row="5" Grid.ColumnSpan="4" Height="5" HorizontalAlignment="Stretch"></GridSplitter>
+        <DockPanel Grid.Row="1" Grid.Column="1">
+            <Button x:Name="escButton" DockPanel.Dock="Top" IsCancel="True" Content="Esc"/>
+            <CheckBox Grid.Row="1" Background="White" IsThreeState="True" IsChecked="{x:Null}" Content="Not defined" VerticalAlignment="Center"/>
+        </DockPanel>
     </Grid>
 </Window>
